@@ -13,7 +13,7 @@ public class Main {
         String password = "ntgq zkne mhri vplj";
         final String username = email;
         final String host = "imap.gmail.com";
-        String targetPhrase = "Location: Attenzione! Non è stato possibile richiamare le informazioni sul luogo di accesso.";
+        String targetPhrase = "Attenzione! Non è stato possibile richiamare le informazioni sul luogo di accesso.";
         boolean emailExists = false;
 
         Properties properties = new Properties();
@@ -50,8 +50,11 @@ public class Main {
                             BodyPart relatedBodyPart = relatedMultipart.getBodyPart(j);
                             if (relatedBodyPart.isMimeType("text/html")) {
                                 // Print HTML content
-                                System.out.println("HTML Content:");
-                                System.out.println(relatedBodyPart.getContent());
+                                String htmlContent = (String) relatedBodyPart.getContent();
+                                //System.out.println("HTML Content:");
+                                //System.out.println(relatedBodyPart.getContent());
+                                if(htmlContent.contains(targetPhrase)){
+                                    System.out.println("Target phrase found in HTML content.");                                }
                             }
                         }
                     }
