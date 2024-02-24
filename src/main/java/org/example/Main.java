@@ -34,10 +34,11 @@ public class Main {
             Folder folder = store.getFolder("INBOX");
             folder.open(Folder.READ_WRITE);
             Message[] messages = folder.getMessages();
-            System.out.println("messages.length---" + messages.length);
-            //latestMessage.setFlag(Flags.Flag.SEEN, true); //Segna il messaggio come leto
             Message lastMessage = messages[messages.length - 1];
-
+            System.out.println("messages.length---" + messages.length);
+            System.out.println("Subject: " + lastMessage.getSubject());
+            System.out.println("From: " + lastMessage.getFrom()[0]);
+            //latestMessage.setFlag(Flags.Flag.SEEN, true); //Segna il messaggio come leto
             Object content = lastMessage.getContent();
             if (content instanceof MimeMultipart) {
                 MimeMultipart multipart = (MimeMultipart) content;
@@ -54,7 +55,7 @@ public class Main {
                                 //System.out.println("HTML Content:");
                                 //System.out.println(relatedBodyPart.getContent());
                                 if(htmlContent.contains(targetPhrase)){
-                                    System.out.println("Target phrase found in HTML content.");                                }
+                                    System.out.println("Frase trovata");                                }
                             }
                         }
                     }
